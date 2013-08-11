@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>JSONSelect - jsFiddle demo</title>
+  
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+  
+      <script type='text/javascript' src="jsonselect.js"></script>
+      <script type='text/javascript' src="http://{YOURSERVER.COM}/gauge/data.php?type=referrers"></script>
+      <script type='text/javascript' src="http://{YOURSERVER.COM}/gauge/data.php?type=traffic"></script>
+      <script type='text/javascript' src="http://{YOURSERVER.COM}/gauge/data.php?type=terms"></script>
+  
+  <style type='text/css'>
+
+  </style>
+  
+
+
+<script type='text/javascript'>
+function execute(selector,type,data){
+
+var stop = false;
+  
+    var resultObj = JSONSelect.match(selector, data);
+    
+    $('body').append('<h1>'+type+'</h1>');
+
+    JSONSelect.forEach(selector, data, function(resultObj) {
+        var thread = ($.trim(JSON.stringify(resultObj, null, ' ')).replace(/\"/ig,''))
+        if(type == 'traffic:views' && !stop){
+        stop = true;
+        $('body').append('<a href="'+thread+'">'+thread+'</a><br>');
+        }
+        if(type == 'traffic:people' && !stop){
+        stop = true;
+        $('body').append('<a href="'+thread+'">'+thread+'</a><br>');
+        }
+        if(type == 'referrers' || type == 'terms'){
+        $('body').append('<a href="'+thread+'">'+thread+'</a><br>');
+        }
+    });
+
+}
+
+
+
+$(function(){
+
+execute('.url','referrers',jsonreferrers);
+execute('.views','traffic:views',jsontraffic);
+execute('.people','traffic:people',jsontraffic);
+execute('.term','terms',jsonterms);
+
+
+});
+
+
+
+</script>
+
+
+</head>
+<body>
+
+  
+</body>
+
+
+</html>
