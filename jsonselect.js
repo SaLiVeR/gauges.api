@@ -9,7 +9,7 @@
  *
  * Anywhere where a string selector is selected, it may be followed by an
  * optional array of values.  When provided, they will be escaped and
- * inserted into the selector string properly escaped.  i.e.:
+ * inserted into the selector string properly escaped.  i.e.
  *
  *   .match(':has(?)', [ 'foo' ], {}) 
  * 
