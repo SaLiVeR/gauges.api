@@ -13,6 +13,7 @@ $headers = array(
         // headers
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         
+        
 
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
